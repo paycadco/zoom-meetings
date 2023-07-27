@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const server = require("https").Server(app);
+const server = require("http").Server(app);
+console.log("Server: "+ server[1])
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
 const { ExpressPeerServer } = require("peer");
