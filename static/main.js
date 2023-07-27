@@ -27,7 +27,7 @@ var getUserMedia =
     navigator.mozGetUserMedia;
 
 sendmessage = (text) => {
-    if (event.key === "Enter" && text.value !== "") {
+    if (event.key === "Enter" && text.value != "") {
         socket.emit("messagesend", myname + ' : ' + text.value);
         text.value = "";
         main__chat_window.scrollTop = main__chat_window.scrollHeight;
@@ -74,25 +74,24 @@ peer.on("open", (id) => {
 });
 
 socket.on("createMessage", (message) => {
-    const ul = document.getElementById("messageadd");
-    const li = document.createElement("li");
+    var ul = document.getElementById("messageadd");
+    var li = document.createElement("li");
     li.className = "message";
     li.appendChild(document.createTextNode(message));
     ul.appendChild(li);
 });
 
 socket.on("AddName", (username) => {
-    let OtherUsername = username;
+    OtherUsername = username;
     console.log(username);
 });
 
 const RemoveUnusedDivs = () => {
     //
-    let alldivs = videoGrids.getElementsByTagName("div");
-    let e;
-    for (let i = 0; i < alldivs.length; i++) {
+    alldivs = videoGrids.getElementsByTagName("div");
+    for (var i = 0; i < alldivs.length; i++) {
         e = alldivs[i].getElementsByTagName("video").length;
-        if (e === 0) {
+        if (e == 0) {
             alldivs[i].remove();
         }
     }
@@ -148,7 +147,11 @@ const VideomuteUnmute = () => {
 };
 
 const showchat = () => {
-    chat.hidden = chat.hidden === false;
+    if (chat.hidden == false) {
+        chat.hidden = true;
+    } else {
+        chat.hidden = false;
+    }
 };
 
 const addVideoStream = (videoEl, stream, name) => {
